@@ -1,25 +1,48 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { initializeApp } from 'firebase/app'
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth'
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAy7dAsSB5RIW2XF2M9TOcFdIfDbGbCY4g",
-  authDomain: "crown-db-e8165.firebaseapp.com",
-  projectId: "crown-db-e8165",
-  storageBucket: "crown-db-e8165.appspot.com",
-  messagingSenderId: "353852432505",
-  appId: "1:353852432505:web:cc2329410816adb88434a8",
-  measurementId: "G-5V7WPZ96TX",
-};
-firebase.initializeApp(firebaseConfig);
-export const auth = firebase.auth()
-export const firestore = firebase.firestore()
+  apiKey: "AIzaSyAFm_1soixVjSiAAmXnlbLU6K7gBbGPK3Y",
+  authDomain: "crwn-shop-db-f6c3d.firebaseapp.com",
+  projectId: "crwn-shop-db-f6c3d",
+  storageBucket: "crwn-shop-db-f6c3d.appspot.com",
+  messagingSenderId: "760083104751",
+  appId: "1:760083104751:web:17e8958f7139c49a65ec1a",
+  measurementId: "G-DW6VQ6GRYK"
+}
 
-const provider = new firebase.auth.GoogleAuthProvider()
+const firebaseApp = initializeApp(firebaseConfig);
+
+export const auth = getAuth()
+const provider = new GoogleAuthProvider()
 provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+// sign in with google
+export const signInWithGoogle = () => signInWithPopup(auth, provider);
 
-export default firebase;
+
+export const db = getFirestore()
+
+export const createUserDocumentFromAuth = async (userAuth) => {
+  const userDocRef = doc(db, 'users', userAuth.uid)
+  console.log(userDocRef)
+  const userSnapshot = await getDoc(userDocRef)
+  console.log(userSnapshot)
+  console.log(userSnapshot.exists())
+  
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth
+    const createdAt = new Date()
+    try {
+await setDoc(userDocRef, { displayName, email, createdAt})
+    } catch(error) {
+console.log( 'error creating the user', error.message)
+    }
+  } 
+  return userDocRef
+  //if user data exist
+//return userDocRef
+  //not exist
+  //create / set the document with the data from user auth in my collection
+}

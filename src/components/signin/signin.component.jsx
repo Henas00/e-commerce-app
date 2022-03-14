@@ -1,6 +1,9 @@
 import React from "react";
 
-import { signInWithGoogle } from "../../firebase/firebase.utiles";
+import {
+  signInWithGoogle,
+  createUserDocumentFromAuth,
+} from "../../firebase/firebase.utiles";
 import Button from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
 import './signin.styles.scss'
@@ -20,6 +23,10 @@ class SignIn extends React.Component {
       const { value, name } = e.target;
     this.setState({ [name]: value });
   };
+  logGoogleUser = async () => {
+    const {user} = await signInWithGoogle()
+    const userDocRef = await createUserDocumentFromAuth(user);
+  }
   render() {
     return (
       <div className="sign-in">
@@ -46,7 +53,7 @@ class SignIn extends React.Component {
           />
           <div className="buttons">
             <Button type="submit">Sign in</Button>
-            <Button onClick={signInWithGoogle} isGoogleSignIn>
+            <Button onClick={this.logGoogleUser} isGoogleSignIn>
               Sign in with Google
             </Button>
           </div>
