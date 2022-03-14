@@ -14,5 +14,10 @@
   .navbar {
     display: flex;
     gap: 15px;
+    text-transform: uppercase;
+
+    .navbar-item{
+      cursor: pointer;
+    }
   }
 }
