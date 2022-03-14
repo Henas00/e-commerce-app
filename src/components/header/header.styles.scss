@@ -1,0 +1,18 @@
+.header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo-container{
+      display: flex;
+      align-items: center;
+      color: grey;
+      font-family: 'Dancing Script', cursive;
+  }
+  .navbar {
+    display: flex;
+    gap: 15px;
+  }
+}

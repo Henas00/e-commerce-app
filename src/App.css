@@ -1,4 +1,9 @@
+
 body {
     font-family: 'Saira Extra Condensed', sans-serif;
     padding: 20px 60px;
+}
+
+a{
+    text-decoration: none;
 }
