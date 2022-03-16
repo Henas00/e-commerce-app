@@ -15,7 +15,7 @@ const Authentication = () => {
         <>
           <SignInForm />
           <p>
-            Not registered yet?{" "}
+            Not registered yet?
             <span onClick={toggleSignUp}>Create an Account</span>
           </p>
         </>

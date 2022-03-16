@@ -1,23 +1,17 @@
-import React from "react";
-import CollectionPreview from "../../components/preview-collection/preview-collection.component";
-import { data } from "../../data";
+import React, { useContext } from "react";
+import { ProductsContext } from "../../contexts/products.context";
+import ProductCard from "../../components/product-card/product-card.component";
+import './shop.styles.scss'
+const ShopPage = () => {
+  const { products} = useContext(ProductsContext)
 
-class ShopPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { collections: data };
-  }
-
-  render() {
-    const { collections } = this.state;
-    console.log(collections);
     return (
-      <div className="shop-page">
-        {collections.map(({ id, ...otherCollectionProps }) => (
-          <CollectionPreview key={id} {...otherCollectionProps} />
+      <div className="products-container">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product}/>
         ))}
       </div>
     );
-  }
+  
 }
 export default ShopPage;

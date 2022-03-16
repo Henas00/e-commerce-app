@@ -1,9 +1,16 @@
 import "./header.styles.scss";
 import { Link, Outlet } from "react-router-dom";
+import { signOutUser } from "../../firebase/firebase.utiles";
 import { ReactComponent as Logo} from '../../assets/crown.svg'
-import { auth } from "../../firebase/firebase.utiles";
-import { Fragment } from "react";
-const Header = ({currentUser}) => {
+import { Fragment, useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { CartContext } from "../../contexts/cart.context";
+const Header = () => {
+  const { currentUser } = useContext(UserContext)
+  const { isCartOpen } = useContext(CartContext);
+
   return (
     <Fragment>
       <header className="header">
@@ -19,7 +26,7 @@ const Header = ({currentUser}) => {
             Contact
           </Link>
           {currentUser ? (
-            <div className="navbar-item" onClick={() => auth.signOut()}>
+            <div className="navbar-item" onClick={signOutUser}>
               Sign Out
             </div>
           ) : (
@@ -27,7 +34,9 @@ const Header = ({currentUser}) => {
               Sign In
             </Link>
           )}
+          <CartIcon />
         </nav>
+        {isCartOpen && <CartDropdown/>}
       </header>
       <Outlet />
     </Fragment>

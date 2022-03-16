@@ -30,9 +30,8 @@ class App extends React.Component {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Header currentUser={this.state.currentUser}/>}>
-
-            <Route index element={<HomePage />} />
+        <Route path='/' element={<Header/>}>
+        <Route index element={<HomePage />} />
         <Route path='/shop' element={<ShopPage />} />
         <Route path='/auth' element={<Authentication />} />
         </Route>
