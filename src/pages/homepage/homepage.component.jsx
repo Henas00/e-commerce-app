@@ -1,5 +1,5 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import Menu from '../../components/menu/menu.component';
+import { useLocation } from 'react-router-dom';
+import Categories from '../../components/categories/categories.component';
 import './homepage.styles.scss'
 
 const HomePage = () => {
@@ -10,7 +10,7 @@ const HomePage = () => {
 
     return (
       <div className="homepage">
-           <Menu />
+           <Categories />
       </div>
     );
 }

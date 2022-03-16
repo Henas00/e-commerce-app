@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import './menu-item.styles.scss'
+import './category-item.styles.scss'
 
-const MenuItem = ({ title, imageUrl, size }) => {
+const CategoryItem = ({ category }) => {
+  const { title, imageUrl, size } = category;
   const navigate = useNavigate();
 
   return (
@@ -18,4 +19,4 @@ const MenuItem = ({ title, imageUrl, size }) => {
   );
 };
  
-export default MenuItem;
+export default CategoryItem;

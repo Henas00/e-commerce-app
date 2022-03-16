@@ -1,13 +1,13 @@
 import React from "react";
-import MenuItem from "../menu-item/menu-item.component";
-import "./menu.styles.scss";
+import CategoryItem from "../category-item/category-item.component";
+import "./categories.styles.scss";
 
-class Menu extends React.Component {
+class Categories extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      sections: [
+      categories: [
         {
           title: "hats",
           imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
@@ -46,12 +46,15 @@ class Menu extends React.Component {
   render() {
     return (
       <div className="menu">
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}/>
+        {this.state.categories.map((category) => (
+          <CategoryItem
+            key={category.id}
+           category={category}
+          />
         ))}
       </div>
     );
   }
 }
 
-export default Menu;
+export default Categories;

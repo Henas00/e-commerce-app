@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import './App.css';
 
 // components
-import Header from "./components/header/header.component";
+import Header from "./pages/header/header.component";
 import HomePage from './pages/homepage/homepage.component';
-import Login from "./pages/logIn/login.component";
+import Authentication from "./pages/authentication/authentication.component";
 import ShopPage from "./pages/shop/shop.compnent";
 import { auth } from './firebase/firebase.utiles'
 
@@ -29,11 +29,14 @@ class App extends React.Component {
   render() {
   return (
     <div>
-      <Header currentUser={this.state.currentUser} />
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<Header currentUser={this.state.currentUser}/>}>
+
+            <Route index element={<HomePage />} />
         <Route path='/shop' element={<ShopPage />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/auth' element={<Authentication />} />
+        </Route>
+      
       </Routes>
     </div>
   );

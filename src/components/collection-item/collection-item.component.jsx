@@ -1,5 +1,5 @@
 import "./collection-item.styles.scss";
-const ColllectionItem = ({ id, name, price, imageUrl }) => {
+const ColllectionItem = ({ name, price, imageUrl }) => {
   return (
     <div className="collection-item">
       <div
